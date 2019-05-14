@@ -37,13 +37,10 @@ const corsOptions = {
   optionsSuccessStatus: 200 
 }
 
-
-
-
 app.use(cors(corsOptions));
 
 
-app.use('/api/tournaments', apiRouter);
+app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use("/login", authRouter)
 

@@ -43,7 +43,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.use('/api/v1', apiRouter);
+app.use('/api/tournaments', apiRouter);
 app.use('/users', usersRouter);
 app.use("/login", authRouter)
 

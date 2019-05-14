@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 // SHOW
 router.get("/:id", async (req,res)=>{
   try {
-    const user = await User.findById()
+    const user = await User.findById(req.params.id)
     res.json({user})
   } catch (error) {
     res.json(error)

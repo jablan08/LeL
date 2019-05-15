@@ -38,12 +38,12 @@ router.get("/tournaments", async (req, res) => {
 const fetchRunningTourney = () =>
   fetch(`https://api.pandascore.co/lol/tournaments/running?token=${process.env.MY_SECRET}`)
 const fetchUpcomingTourney = () =>
-  fetch(`https://api.pandascore.co/lol/tournaments/upcoming?token=${process.env.MY_SECRET}`)
+  fetch(`https://api.pandascore.co/lol/matches/upcoming?token=${process.env.MY_SECRET}`)
 const fetchPastTourney = () =>
   fetch(`https://api.pandascore.co/lol/tournaments/past/?per_page=5&token=${process.env.MY_SECRET}`)
 
 const fetchPastMatches = () => 
-  fetch(`https://api.pandascore.co/lol/matches/past?per_page=3&token=${process.env.MY_SECRET}`)
+  fetch(`https://api.pandascore.co/lol/matches/past?per_page=6&token=${process.env.MY_SECRET}`)
 
 
 

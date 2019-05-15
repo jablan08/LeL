@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require("../models/Users")
-
+const bcrypt = require('bcryptjs')
 
 
 
@@ -13,7 +13,7 @@ router.post("/", async (req,res) =>{
         if (foundUser) {
             console.log(foundUser)
             console.log(req.body.password,"=========")
-            if(foundUser.password === req.body.password) {
+            if(foundUser.validPassword(req.body.password)) {
                 console.log(foundUser,"++++++=======")
                 console.log(req.session,"HIT SESSION")
                 req.session.logged = true;

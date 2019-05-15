@@ -29,19 +29,7 @@ router.get("/:id", async (req,res)=>{
   }
 })
 
-// CREATE
-router.post('/', async (req, res) => {
-  try {
-    const newUser = await User.create(req.body)
-    res.json({newUser})
-    console.log(newUser)
-    
-  } catch (error) {
 
-    res.json(error)
-
-  } 
-});
 
 // EDIT
 router.put('/:id', async (req, res) => {

@@ -50,18 +50,18 @@ const fetchPastMatches = () =>
 
 // GET TEAMS
 
-// router.get("/teams", async (req,res)=>{
-//   try {
-//     const teams = await fetch(`https://api.pandascore.co/lol/teams?token=${process.env.MY_SECRET}`)
-//     const teamsJson = await teams.Json();
-
-//     res.json({
-//       allTeams:
-//     })
-//   } catch (error) {
-    
-//   }
-// })
+router.get("/teams", async (req,res)=>{
+  try {
+    const teams = await fetch(`https://api.pandascore.co/lol/teams?token=${process.env.MY_SECRET}`)
+    const teamsJson = await teams.Json();
+    res.json({
+      allTeams: teamsJson,
+      success: true
+    })
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 router.post('/', (req, res) => {
   return res.json({

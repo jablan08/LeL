@@ -21,9 +21,19 @@ router.post("/", async (req,res) =>{
                 res.json({
                     user: foundUser,
                     status: 200,
-                    success: true
+                    success: foundUser ? true : false
+                })
+            } else {
+                req.session.message = "Invaild Username or Password"
+                res.json({
+                    message: req.session.message
                 })
             }
+        } else {
+            req.session.message = "Invaild Username or Password"
+            res.json({
+                message: req.session.message
+            })
         }
     } catch (error) {
         res.json({
@@ -33,5 +43,18 @@ router.post("/", async (req,res) =>{
 
    
 })
+// CREATE
+router.post('/new', async (req, res) => {
+    try {
+      const newUser = await User.create(req.body)
+      res.json({
+        newUser,
+        success: newUser ? true : false
+      })
+      console.log(newUser)
+    } catch (error) {
+      res.json(error)
+    } 
+  });
 
 module.exports = router;

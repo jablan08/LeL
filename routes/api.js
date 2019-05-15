@@ -9,8 +9,8 @@ router.get("/tournaments", async (req, res) => {
     const tournamentsRunning = await fetchRunningTourney();
     const tournamentsRunningJson = await tournamentsRunning.json();
 
-    const tournamentsUpcoming = await fetchUpcomingTourney();
-    const tournamentsUpcomingJson = await tournamentsUpcoming.json();
+    const matchesUpcoming = await fetchUpcomingMatches();
+    const matchesUpcomingJson = await matchesUpcoming.json();
     
     const tournamentsPast = await fetchPastTourney();
     const tournamentsPastJson = await tournamentsPast.json();
@@ -20,7 +20,7 @@ router.get("/tournaments", async (req, res) => {
 
     const data = {
       dataRunning: tournamentsRunningJson,
-      dataUpcoming: tournamentsUpcomingJson,
+      dataUpcoming: matchesUpcomingJson,
       dataPast: tournamentsPastJson,
       dataPastMatches: pastMatchesJson,
 
@@ -37,7 +37,7 @@ router.get("/tournaments", async (req, res) => {
 
 const fetchRunningTourney = () =>
   fetch(`https://api.pandascore.co/lol/tournaments/running?token=${process.env.MY_SECRET}`)
-const fetchUpcomingTourney = () =>
+const fetchUpcomingMatches = () =>
   fetch(`https://api.pandascore.co/lol/matches/upcoming?token=${process.env.MY_SECRET}`)
 const fetchPastTourney = () =>
   fetch(`https://api.pandascore.co/lol/tournaments/past/?per_page=5&token=${process.env.MY_SECRET}`)

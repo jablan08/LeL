@@ -10,9 +10,9 @@ router.post("/", async (req,res) =>{
     try {
         console.log("Hit the login")
         const foundUser = await User.findOne({username: req.body.username})
-        if (foundUser) {
-            console.log(foundUser)
-            console.log(req.body.password,"=========")
+        // if (foundUser) {
+        //     console.log(foundUser)
+        //     console.log(req.body.password,"=========")
             if(foundUser.validPassword(req.body.password)) {
                 console.log(foundUser,"++++++=======")
                 console.log(req.session,"HIT SESSION")
@@ -24,20 +24,22 @@ router.post("/", async (req,res) =>{
                     success: foundUser ? true : false
                 })
             } else {
-                req.session.message = "Invaild Username or Password"
+                req.session.message = "Invalid Username or Password"
                 res.json({
                     message: req.session.message
                 })
             }
-        } else {
-            req.session.message = "Invaild Username or Password"
-            res.json({
-                message: req.session.message
-            })
-        }
+        
+        // else {
+        //     req.session.message = "Invalid Username or Password"
+        //     res.json({
+        //         message: req.session.message
+        //     })
+        // }
     } catch (error) {
+        req.session.message = "Invalid Username or Password"
         res.json({
-            error
+            message: req.session.message
         })
     }
 

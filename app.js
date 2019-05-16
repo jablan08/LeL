@@ -34,7 +34,7 @@ app.use(session({
 
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:3000" || "https://leagueofesportslegends.herokuapp.com",
   credentials: true,
   optionsSuccessStatus: 200 
 }
@@ -45,7 +45,6 @@ app.use(cors(corsOptions));
 app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use("/login", authRouter)
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=>{

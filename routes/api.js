@@ -95,9 +95,21 @@ router.put('/', (req, res) => {
   return res.json({data: 'Received a PUT HTTP method'});
 });
 
-router.delete('/', (req, res) => {
-  return res.json({data: 'Received a DELETE HTTP method'});
+router.delete('/watchlist/:id', async (req, res) => {
+  try {
+    const foundUser = await User.findOne({'watchList': req.params.id});
+    foundUser.watchList.remove(req.params.id);
+    await foundUser.save();
+    console.log(req.session, 'response happening?')
+    res.json({
+      status: 200,
+      data: deletedMovie
+    });
+  } catch(err) {
+    res.send(err)
+  }
 });
+
 
 
 module.exports = router;

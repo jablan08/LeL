@@ -15,9 +15,11 @@ router.post("/", async (req,res) =>{
         //     console.log(req.body.password,"=========")
             if(foundUser.validPassword(req.body.password)) {
                 console.log(foundUser,"++++++=======")
-                console.log(req.session,"HIT SESSION")
+                
                 req.session.logged = true;
                 req.session.username = req.body.username;
+                req.session.userDbId = foundUser._id;
+                console.log(req.session,"HIT SESSION")
                 res.json({
                     user: foundUser,
                     status: 200,

@@ -42,7 +42,7 @@ router.get("/tournaments", async (req, res) => {
 const fetchRunningTourney = () =>
   fetch(`https://api.pandascore.co/lol/tournaments/running?token=${process.env.MY_SECRET}`)
 const fetchUpcomingMatches = () =>
-  fetch(`https://api.pandascore.co/lol/matches/upcoming?per_page=3token=${process.env.MY_SECRET}`)
+  fetch(`https://api.pandascore.co/lol/matches/upcoming?per_page=3&token=${process.env.MY_SECRET}`)
 const fetchPastTourney = () =>
   fetch(`https://api.pandascore.co/lol/tournaments/past/?per_page=5&token=${process.env.MY_SECRET}`)
 
@@ -61,7 +61,6 @@ router.get("/teams", async (req,res)=>{
   try {
     console.log("HIT TRY")
     const teams = await fetchUpcomingTourney();
-    // const teamsSeries = await fetch(`https://api.pandascore.co//lol/series/${req.params.id}/teams`)
     const teamsJson = await teams.json();
     res.json({
       allTeams: teamsJson,
@@ -74,7 +73,6 @@ router.get("/teams", async (req,res)=>{
 router.get("/teams/:id", async (req,res)=>{
   try {
     console.log(req.params.id,"+++++++HIT TRY")
-    // const teams = await fetch(`https://api.pandascore.co/lol/tournaments/upcoming?token=${process.env.MY_SECRET}`)
     const team = await fetch(`https://api.pandascore.co//teams/${req.params.id}?token=${process.env.MY_SECRET}`)
     const teamJson = await team.json();
     res.json({

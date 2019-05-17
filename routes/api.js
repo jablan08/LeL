@@ -99,10 +99,32 @@ router.get("/match/:id", async (req,res)=>{
   }
 })
 
+router.get("/schedule", async (req,res)=>{
+  const getSchedule = await fetch(`https://api.pandascore.co/lol/matches/upcoming?&token=${process.env.MY_SECRET}`)
+  const scheduleJson = await getSchedule.json();
+  res.json({
+    schedules: scheduleJson,
+    success: true
+  })
+})
 
-router.put('/', (req, res) => {
-  return res.json({data: 'Received a PUT HTTP method'});
-});
+
+router.get("/tournament/:id", async (req,res)=>{
+  const getTournamentStats = await fetch(`https://api.pandascore.co//tournaments/${req.params.id}/standings/?token=${process.env.MY_SECRET}`)
+  const getTournamentStatsJson = await getTournamentStats.json();
+
+  
+  const getTournament = await fetch(`https://api.pandascore.co//tournaments/${req.params.id}/?token=${process.env.MY_SECRET}`)
+  const getTournamentJson = await getTournament.json();
+
+  
+  res.json({
+    tournamentStats: getTournamentStatsJson,
+    tournament: getTournamentJson,
+    success: true
+  })
+})
+
 
 router.delete('/watchlist/:id', async (req, res) => {
   try {

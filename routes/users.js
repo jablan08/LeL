@@ -69,7 +69,8 @@ router.post("/add", async (req,res)=> {
     await foundUser.save()
     res.json({
       updatedUser: foundUser,
-      success: true
+      success: true,
+      message: "Add to watch list!"
     })
   } catch (error) {
     console.log(error)
@@ -88,11 +89,10 @@ router.delete('/watchlist/:id', async (req, res) => {
     //     foundUser.watchList.splice(i,1)
     //   }
     // }
-    foundUser.watchList.splice(i,1)
+    foundUser.watchList.splice(req.params.id,1)
     await foundUser.save();
     
     res.json({
-      status: 200,
       foundUser
     });
   } catch(err) {

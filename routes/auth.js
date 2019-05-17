@@ -61,4 +61,14 @@ router.post('/new', async (req, res) => {
     } 
   });
 
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+    if(err){
+    res.json(err);
+    } else {
+    res.redirect('/');
+    }
+    })
+})
+
 module.exports = router;

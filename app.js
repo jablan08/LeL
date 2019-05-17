@@ -34,7 +34,7 @@ app.use(session({
 
 
 const corsOptions = {
-  origin: "https://leagueofesportlegends.herokuapp.com",
+  origin: "http://localhost:3000" || "https://leagueofesportlegends.herokuapp.com",
   credentials: true,
   optionsSuccessStatus: 200 
 }

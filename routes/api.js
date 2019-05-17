@@ -84,12 +84,21 @@ router.get("/teams/:id", async (req,res)=>{
     console.log(error)
   }
 })
+router.get("/match/:id", async (req,res)=>{
+  try {
+    console.log(req.params.id,"+++++++HIT TRY")
+    const getMatch = await fetch(`https://api.pandascore.co//matches/${req.params.id}?token=${process.env.MY_SECRET}`)
+    const matchJson = await getMatch.json();
+    res.json({
+      match: matchJson,
+      success: true
+    })
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
 
-router.get('/', (req, res) => {
-  return res.json({
-    body: req.body
-  });
-});
 
 router.put('/', (req, res) => {
   return res.json({data: 'Received a PUT HTTP method'});

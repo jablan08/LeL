@@ -8,18 +8,16 @@ const bcrypt = require('bcryptjs')
 
 router.post("/", async (req,res) =>{
     try {
-        console.log("Hit the login")
+        
         const foundUser = await User.findOne({username: req.body.username})
-        // if (foundUser) {
-        //     console.log(foundUser)
-        //     console.log(req.body.password,"=========")
+       
             if(foundUser.validPassword(req.body.password)) {
-                console.log(foundUser,"++++++=======")
+          
                 
                 req.session.logged = true;
                 req.session.username = req.body.username;
                 req.session.userDbId = foundUser._id;
-                console.log(req.session,"HIT SESSION")
+                
                 res.json({
                     user: foundUser,
                     status: 200,
@@ -31,13 +29,6 @@ router.post("/", async (req,res) =>{
                     message: req.session.message
                 })
             }
-        
-        // else {
-        //     req.session.message = "Invalid Username or Password"
-        //     res.json({
-        //         message: req.session.message
-        //     })
-        // }
     } catch (error) {
         req.session.message = "Invalid Username or Password"
         res.json({
@@ -55,7 +46,7 @@ router.post('/new', async (req, res) => {
         newUser,
         success: newUser ? true : false
       })
-      console.log(newUser)
+      
     } catch (error) {
       res.json(error)
     } 

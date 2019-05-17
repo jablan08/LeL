@@ -59,7 +59,7 @@ const fetchPastMatches = () =>
 
 router.get("/teams", async (req,res)=>{
   try {
-    console.log("HIT TRY")
+   
     const teams = await fetchUpcomingTourney();
     const teamsJson = await teams.json();
     res.json({
@@ -72,7 +72,7 @@ router.get("/teams", async (req,res)=>{
 })
 router.get("/teams/:id", async (req,res)=>{
   try {
-    console.log(req.params.id,"+++++++HIT TRY")
+    
     const team = await fetch(`https://api.pandascore.co//teams/${req.params.id}?token=${process.env.MY_SECRET}`)
     const teamJson = await team.json();
     res.json({
@@ -86,7 +86,7 @@ router.get("/teams/:id", async (req,res)=>{
 })
 router.get("/match/:id", async (req,res)=>{
   try {
-    console.log(req.params.id,"+++++++HIT TRY")
+    
     const getMatch = await fetch(`https://api.pandascore.co//matches/${req.params.id}?token=${process.env.MY_SECRET}`)
     const matchJson = await getMatch.json();
     res.json({
@@ -131,7 +131,7 @@ router.delete('/watchlist/:id', async (req, res) => {
     const foundUser = await User.findOne({'watchList': req.params.id});
     foundUser.watchList.remove(req.params.id);
     await foundUser.save();
-    console.log(req.session, 'response happening?')
+ 
     res.json({
       status: 200,
       data: deletedMovie

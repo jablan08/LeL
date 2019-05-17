@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 router.get("/:id", async (req,res)=>{
   try {
     const user = await User.findById(req.params.id)
-    console.log(user, "show user")
+    
     res.json({user})
   } catch (error) {
     res.json(error)
@@ -56,9 +56,7 @@ router.delete('/:id', async (req, res) => {
 router.post("/add", async (req,res)=> {
   try {
     const foundUser = await User.findById(req.session.userDbId)
-    console.log(req.session)
-    console.log(foundUser, "I FOUNDDDDDD==================")
-    console.log(req.body)
+
     const team ={
       title:req.body.name,
       image:req.body.image_url,
@@ -82,13 +80,7 @@ router.post("/add", async (req,res)=> {
 router.delete('/watchlist/:id', async (req, res) => {
   try {
     const foundUser = await User.findById(req.session.userDbId);
-    console.log(req.params.id, "FOUND YOU MONKEY")
-    // for (let i = 0; i < foundUser.watchList.length; i++) {
-    //   if (foundUser.watchList[i].id === Number(req.params.id)){
-
-    //     foundUser.watchList.splice(i,1)
-    //   }
-    // }
+   
     foundUser.watchList.splice(req.params.id,1)
     await foundUser.save();
     
